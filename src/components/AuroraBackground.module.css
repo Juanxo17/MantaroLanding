@@ -1,0 +1,68 @@
+.auroraWrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: #0c0805; /* Un tono café súper oscuro de base */
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+  opacity: 0.6;
+  pointer-events: none;
+  will-change: transform; /* Optimizacion por hardware para evitar LAG */
+}
+
+.orb1 {
+  width: 60vw;
+  height: 60vw;
+  top: -20vh;
+  left: -10vw;
+  background: radial-gradient(circle at center, rgba(92, 58, 25, 0.8) 0%, rgba(92, 58, 25, 0) 70%);
+}
+
+.orb2 {
+  width: 50vw;
+  height: 50vw;
+  bottom: -10vh;
+  right: -10vw;
+  background: radial-gradient(circle at center, rgba(139, 111, 71, 0.8) 0%, rgba(139, 111, 71, 0) 70%);
+}
+
+.orb3 {
+  width: 45vw;
+  height: 45vw;
+  top: 30vh;
+  left: 30vw;
+  background: radial-gradient(circle at center, rgba(200, 169, 110, 0.8) 0%, rgba(200, 169, 110, 0) 70%);
+  opacity: 0.4;
+}
+
+.tribalPattern {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.06; /* Muy sutil, coherente con la marca */
+  pointer-events: none;
+  /* Patrón Chakana / Precolombino con el color Beige de la marca */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg stroke='%23C8A96E' stroke-width='1.5' fill='none'%3E%3Cpath d='M25 5h10v10h10v10h10v10h-10v10h-10v10h-10v-10h-10v-10h-10v-10h10v-10h10z'/%3E%3Cpath d='M28 28h4v4h-4z'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 60px 60px;
+}
+
+.noiseFilter {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.03; /* Reduje el ruido aún más para que resalte el patrón tribal */
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  will-change: transform;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
