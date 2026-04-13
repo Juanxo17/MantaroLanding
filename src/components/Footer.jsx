@@ -107,7 +107,7 @@ export default function Footer() {
               <FacebookIcon />
             </motion.a>
             <motion.a
-              href="https://wa.me/573175474135"
+              href="https://wa.me/573166677871"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2, rotate: 5 }}

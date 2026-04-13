@@ -140,9 +140,15 @@
   border-bottom-left-radius: 4px;
 }
 
+.actionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 15px;
+}
+
 .actionBtn {
   display: block;
-  margin-top: 15px;
   padding: 10px 16px;
   background-color: #25D366; /* Verde de WhatsApp */
   color: white !important;
@@ -159,6 +165,18 @@
   background-color: #20bd5a;
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+}
+
+.actionBtnSecondary {
+  background-color: white;
+  color: #333 !important;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  border: 1px solid #ddd;
+}
+
+.actionBtnSecondary:hover {
+  background-color: #f8f9fa;
+  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
 }
 
 .spinner {

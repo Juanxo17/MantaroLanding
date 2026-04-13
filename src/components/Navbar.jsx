@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Menu as MenuIcon, X, ShoppingBag } from 'lucide-react';
+import { Menu as MenuIcon, X, ShoppingBag, Star } from 'lucide-react';
 import logo from '../utils/image.png';
 
 const InstagramIcon = () => (
@@ -64,6 +64,18 @@ export default function Navbar() {
           ))}
           
           <motion.a
+            href="https://www.google.com/search?client=opera-gx&hs=MGp&sca_esv=2f8518efab07fb93&sxsrf=ANbL-n6SXtPRg7cgboe5k_UisN6HzFrquQ:1776118626721&q=caf%C3%A9+mantaro+ginebra&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOYN3wpy3qjdvT64QxSoAdeCNqLZTB9tNPlJIElSpc_7gkdPm7GL9heEH5USLiImEE0yIpxXXsMKgJGsaGDw07BVtFeK9-QTB7GH8TclXLUYks6j6aw%3D%3D&sa=X&ved=2ahUKEwivisy-7euTAxW0QzABHaESHD4QrrQLegQIGhAA&biw=1324&bih=611&dpr=1#"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.googleReviewBtn}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Star size={18} />
+            <span className={styles.igText}>Califícanos</span>
+          </motion.a>
+
+          <motion.a
             href="https://www.instagram.com/mantaroginebra/"
             target="_blank"
             rel="noopener noreferrer"
@@ -97,6 +109,16 @@ export default function Navbar() {
 
         {/* Mobile Controls */}
         <div className={styles.mobileControls}>
+          <motion.a
+            href="https://www.google.com/search?client=opera-gx&hs=MGp&sca_esv=2f8518efab07fb93&sxsrf=ANbL-n6SXtPRg7cgboe5k_UisN6HzFrquQ:1776118626721&q=caf%C3%A9+mantaro+ginebra&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOYN3wpy3qjdvT64QxSoAdeCNqLZTB9tNPlJIElSpc_7gkdPm7GL9heEH5USLiImEE0yIpxXXsMKgJGsaGDw07BVtFeK9-QTB7GH8TclXLUYks6j6aw%3D%3D&sa=X&ved=2ahUKEwivisy-7euTAxW0QzABHaESHD4QrrQLegQIGhAA&biw=1324&bih=611&dpr=1#"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.googleReviewBtn}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Star size={18} />
+          </motion.a>
+
           <motion.a
             href="https://www.instagram.com/mantaroginebra/"
             target="_blank"

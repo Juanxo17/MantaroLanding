@@ -52,7 +52,7 @@ export default function Cart() {
       message += `\n\n*Aclaraciones:* ${notas.trim()}`;
     }
 
-    const whatsappUrl = `https://wa.me/573175474135?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/573166677871?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
     clearCart();
     setNotas('');

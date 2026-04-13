@@ -74,6 +74,32 @@
   color: white;
 }
 
+.googleReviewBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.googleReviewBtn svg {
+  color: #FBBC05;
+  fill: #FBBC05;
+}
+
+.googleReviewBtn:hover {
+  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
+  color: #000;
+}
+
 .cartButton, .mobileCartBtn {
   background: none;
   border: none;

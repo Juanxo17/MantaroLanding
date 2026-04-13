@@ -25,7 +25,7 @@ export default function Chatbot() {
 
   const openWhatsApp = () => {
     window.open(
-      'https://wa.me/573175474135?text=Hola%20Mantaro,%20quiero%20hacer%20un%20pedido',
+      'https://wa.me/573166677871?text=Hola%20Mantaro,%20quiero%20hacer%20un%20pedido',
       '_blank'
     );
   };
@@ -72,7 +72,9 @@ export default function Chatbot() {
         role: 'assistant',
         content: data.respuesta,
         urlAccion: data.urlAccion,
-        textoAccion: data.textoAccion
+        textoAccion: data.textoAccion,
+        urlSecundaria: data.urlSecundaria,
+        textoSecundario: data.textoSecundario
       };
 
       setMessages([...newMessages, assistantMessage]);
@@ -127,16 +129,28 @@ export default function Chatbot() {
                 >
                   <div className={styles.messageBubble}>
                     {message.content}
-                    {message.urlAccion && (
-                      <a 
-                        href={message.urlAccion} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className={styles.actionBtn}
-                      >
-                        {message.textoAccion || 'Haz clic aquí'}
-                      </a>
-                    )}
+                    <div className={styles.actionsContainer}>
+                      {message.urlAccion && (
+                        <a 
+                          href={message.urlAccion} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className={styles.actionBtn}
+                        >
+                          {message.textoAccion || 'Haz clic aquí'}
+                        </a>
+                      )}
+                      {message.urlSecundaria && (
+                        <a 
+                          href={message.urlSecundaria} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className={`${styles.actionBtn} ${styles.actionBtnSecondary}`}
+                        >
+                          {message.textoSecundario || '🌟 Déjanos una reseña'}
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </motion.div>
               ))}
