@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import SplitText from './SplitText';
 import logo from '../utils/image.png';
 import styles from './Hero.module.css';
 
@@ -14,7 +13,7 @@ export default function Hero() {
 
   const openWhatsApp = () => {
     window.open(
-      'https://wa.me/573166677871?text=Hola%20Mantaro,%20quiero%20ver%20el%20menú',
+      'https://wa.me/573166677871?text=Hola%20Mantaro%20👋%20quiero%20ver%20el%20menú',
       '_blank'
     );
   };
@@ -66,13 +65,9 @@ export default function Hero() {
         </motion.div>
 
         {/* Slogan */}
-        <SplitText
-          text="Deleitar el paladar en una atmósfera mágica"
-          className={styles.slogan}
-          delay={50}
-          animationFrom={{ opacity: 0, y: 30 }}
-          animationTo={{ opacity: 1, y: 0 }}
-        />
+        <motion.h1 className={styles.slogan} variants={itemVariants}>
+          Deleitar el paladar en una atmósfera mágica ✨
+        </motion.h1>
 
         {/* Schedule */}
         <motion.div className={styles.schedule} variants={itemVariants}>

@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';import BlurText from './BlurText';import { menu, categories } from '../data/menu';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Plus } from 'lucide-react';
+import BlurText from './BlurText';
+import { menu, categories } from '../data/menu';
+import { useCart } from '../context/CartContext';
 import styles from './Menu.module.css';
 
 export default function Menu() {
   const [activeCategory, setActiveCategory] = useState('bebidasCalientes');
+  const { addToCart } = useCart();
 
   const currentItems = menu[activeCategory] || [];
 
@@ -81,7 +86,17 @@ export default function Menu() {
                   {item.descripcion && (
                     <p className={styles.itemDescription}>{item.descripcion}</p>
                   )}
-                  <p className={styles.itemPrice}>{item.precio} COP</p>
+                  <div className={styles.priceRow}>
+                    <p className={styles.itemPrice}>${item.precio}</p>
+                    <motion.button
+                      className={styles.addBtn}
+                      onClick={() => addToCart(item)}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <Plus size={20} />
+                    </motion.button>
+                  </div>
                 </div>
               </motion.div>
             ))}

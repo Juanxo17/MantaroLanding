@@ -125,7 +125,33 @@
   font-size: 1.1rem;
   color: var(--color-gold);
   font-weight: 600;
-  margin: 0.5rem 0 0 0;
+  margin: 0;
+}
+
+.priceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.addBtn {
+  background: var(--color-gold, #F5C518);
+  color: #000;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s;
+}
+
+.addBtn:hover {
+  background: #fff;
 }
 
 /* Responsive */

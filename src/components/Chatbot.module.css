@@ -124,6 +124,7 @@
   font-size: 0.9rem;
   line-height: 1.5;
   word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .message.user .messageBubble {
@@ -137,6 +138,27 @@
   color: var(--color-text-light);
   border: 1px solid rgba(200, 169, 110, 0.2);
   border-bottom-left-radius: 4px;
+}
+
+.actionBtn {
+  display: block;
+  margin-top: 15px;
+  padding: 10px 16px;
+  background-color: #25D366; /* Verde de WhatsApp */
+  color: white !important;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  text-align: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+}
+
+.actionBtn:hover {
+  background-color: #20bd5a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
 }
 
 .spinner {

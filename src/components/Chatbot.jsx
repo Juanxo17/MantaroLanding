@@ -8,7 +8,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: '¡Hola! Soy el asistente de Mantaro Ginebra. ¿En qué puedo ayudarte?',
+      content: '¡Hola! ☕ Soy tu mesero virtual de Mantaro. Estoy aquí para guiarte en tu pedido.\n\nPara empezar de la forma más rápida y amigable, solo envíame la palabra "Hola" 👇',
     },
   ]);
   const [input, setInput] = useState('');
@@ -25,44 +25,41 @@ export default function Chatbot() {
 
   const openWhatsApp = () => {
     window.open(
-      'https://wa.me/573166677871?text=Hola%20Mantaro,%20quiero%20hacer%20un%20pedido',
+      'https://wa.me/573175474135?text=Hola%20Mantaro,%20quiero%20hacer%20un%20pedido',
       '_blank'
     );
   };
+
+  const [sessionId] = useState(() => {
+    let id = localStorage.getItem('mantaro_session_id');
+    if (!id) {
+      id = "sess_" + Math.random().toString(36).substring(2, 9);
+      localStorage.setItem('mantaro_session_id', id);
+    }
+    return id;
+  });
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
 
-    // Add user message
     const userMessage = { role: 'user', content: input };
     const newMessages = [...messages, userMessage];
-    
-    // Keep only last 10 messages for context window
-    const contextMessages = newMessages.slice(-10);
     
     setMessages(newMessages);
     setInput('');
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5293';
+      const response = await fetch(`${apiUrl}/api/chatbot`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': import.meta.env.VITE_ANTHROPIC_API_KEY,
-          'anthropic-version': '2023-06-01',
         },
         body: JSON.stringify({
-          model: 'claude-haiku-4-5-20251001',
-          max_tokens: 500,
-          system: `Eres el asistente virtual de Mantaro Ginebra, un café-restaurante en Ginebra, Valle del Cauca, Colombia. Eres amable, cálido y usas un tono cercano. Respondes en español.
-
-Conoces el menú completo con precios. Si alguien pregunta por un producto, le das el precio y descripción. Si quiere hacer un pedido, le dices que puede hacerlo por WhatsApp al +57 316 667 7871. Los horarios son: lunes a jueves y domingo de 9am a 10pm, viernes y sábado hasta las 11pm. Hacen domicilios a todo Ginebra. El producto nuevo es el Panzerotti, próximamente disponible. No inventes información que no tengas.`,
-          messages: contextMessages.map((msg) => ({
-            role: msg.role,
-            content: msg.content,
-          })),
+          sessionId: sessionId,
+          mensaje: userMessage.content,
         }),
       });
 
@@ -73,7 +70,9 @@ Conoces el menú completo con precios. Si alguien pregunta por un producto, le d
       const data = await response.json();
       const assistantMessage = {
         role: 'assistant',
-        content: data.content[0].text,
+        content: data.respuesta,
+        urlAccion: data.urlAccion,
+        textoAccion: data.textoAccion
       };
 
       setMessages([...newMessages, assistantMessage]);
@@ -81,7 +80,7 @@ Conoces el menú completo con precios. Si alguien pregunta por un producto, le d
       console.error('Error sending message:', error);
       const errorMessage = {
         role: 'assistant',
-        content: 'Lo siento, hubo un error. Por favor, intenta de nuevo o contáctanos por WhatsApp.',
+        content: 'Lo siento, no pude conectarme al servidor. Asegúrate de ejecutar el backend.',
       };
       setMessages([...newMessages, errorMessage]);
     } finally {
@@ -128,6 +127,16 @@ Conoces el menú completo con precios. Si alguien pregunta por un producto, le d
                 >
                   <div className={styles.messageBubble}>
                     {message.content}
+                    {message.urlAccion && (
+                      <a 
+                        href={message.urlAccion} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className={styles.actionBtn}
+                      >
+                        {message.textoAccion || 'Haz clic aquí'}
+                      </a>
+                    )}
                   </div>
                 </motion.div>
               ))}

@@ -1,8 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Share2, MessageCircle } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 import logo from '../utils/image.png';
 import styles from './Footer.module.css';
+
+const InstagramIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+  </svg>
+);
+
+const FacebookIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+  </svg>
+);
 
 export default function Footer() {
   const containerVariants = {
@@ -40,12 +54,12 @@ export default function Footer() {
           <div className={styles.logoSmall}>
             <img src={logo} alt="Mantaro Logo" />
           </div>
-          <p className={styles.tagline}>Deleitar el paladar en una atmósfera mágica.</p>
+          <p className={styles.tagline}>Deleitar el paladar en una atmósfera mágica ✨</p>
         </motion.div>
 
         {/* Hours Section */}
         <motion.div className={styles.section} variants={itemVariants}>
-          <h3 className={styles.sectionTitle}>Horarios</h3>
+          <h3 className={styles.sectionTitle}>🕐 Horarios</h3>
           <p className={styles.text}>
             <strong>Lun–Jue y Dom:</strong> 9am–10pm
           </p>
@@ -56,7 +70,7 @@ export default function Footer() {
 
         {/* Address Section */}
         <motion.div className={styles.section} variants={itemVariants}>
-          <h3 className={styles.sectionTitle}>Dirección</h3>
+          <h3 className={styles.sectionTitle}>📍 Dirección</h3>
           <p className={styles.text}>
             Carrera 1 Calle 5 Esquina
             <br />
@@ -68,10 +82,10 @@ export default function Footer() {
 
         {/* Social Section */}
         <motion.div className={styles.section} variants={itemVariants}>
-          <h3 className={styles.sectionTitle}>Síguenos</h3>
+          <h3 className={styles.sectionTitle}>🔗 Síguenos</h3>
           <div className={styles.socialLinks}>
             <motion.a
-              href="https://instagram.com/mantaroginebra"
+              href="https://www.instagram.com/mantaroginebra/"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2, rotate: 5 }}
@@ -79,7 +93,7 @@ export default function Footer() {
               className={styles.socialLink}
               title="Instagram"
             >
-              <Share2 size={24} />
+              <InstagramIcon />
             </motion.a>
             <motion.a
               href="https://facebook.com/mantaroginebra"
@@ -90,10 +104,10 @@ export default function Footer() {
               className={styles.socialLink}
               title="Facebook"
             >
-              <Mail size={24} />
+              <FacebookIcon />
             </motion.a>
             <motion.a
-              href="https://wa.me/573166677871"
+              href="https://wa.me/573175474135"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2, rotate: 5 }}
