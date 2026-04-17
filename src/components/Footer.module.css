@@ -1,83 +1,99 @@
 .footer {
-  background: linear-gradient(135deg, rgba(15, 10, 4, 0.95) 0%, rgba(26, 16, 8, 0.9) 100%);
-  border-top: 2px solid rgba(200, 169, 110, 0.3);
-  margin-top: 4rem;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.topLine {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 169, 110, 0.3), transparent);
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 3rem 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-}
-
-.section {
+  padding: 3rem 2rem 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
 }
 
-.logoSmall {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 0.5rem;
+.logoWrapper {
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   overflow: hidden;
-  background: rgba(200, 169, 110, 0.08);
-  border: 2px solid rgba(200, 169, 110, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
 }
 
-.logoSmall:hover {
-  border-color: rgba(200, 169, 110, 0.4);
-  background: rgba(200, 169, 110, 0.12);
-  box-shadow: 0 0 12px rgba(200, 169, 110, 0.25);
-}
-
-.logoSmall img {
-  width: 90%;
-  height: 90%;
+.logo {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
 .tagline {
   font-family: var(--font-display);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--color-beige);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.03em;
   margin: 0;
-  line-height: 1.5;
+  opacity: 0.8;
 }
 
-.sectionTitle {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  color: var(--color-gold);
-  letter-spacing: 1px;
-  margin: 0 0 0.75rem 0;
+/* CTA Row — Instagram & Google Review */
+.ctaRow {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0.5rem 0;
 }
 
-.text {
+.ctaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-pill);
   font-family: var(--font-body);
-  font-size: 0.9rem;
-  color: var(--color-text-light);
-  line-height: 1.6;
-  margin: 0;
+  font-size: 0.825rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.4s var(--ease-out-expo);
+  letter-spacing: 0.01em;
 }
 
-.text strong {
-  color: var(--color-beige);
+.ctaInstagram {
+  background: linear-gradient(135deg, rgba(225, 48, 108, 0.12), rgba(193, 53, 132, 0.12));
+  border: 1px solid rgba(225, 48, 108, 0.25);
+  color: #e1306c;
 }
 
+.ctaInstagram:hover {
+  background: linear-gradient(135deg, rgba(225, 48, 108, 0.2), rgba(193, 53, 132, 0.2));
+  border-color: rgba(225, 48, 108, 0.4);
+  color: #e1306c;
+  transform: translateY(-2px);
+}
+
+.ctaReview {
+  background: rgba(251, 188, 5, 0.1);
+  border: 1px solid rgba(251, 188, 5, 0.25);
+  color: #fbbc05;
+}
+
+.ctaReview:hover {
+  background: rgba(251, 188, 5, 0.18);
+  border-color: rgba(251, 188, 5, 0.4);
+  color: #fbbc05;
+  transform: translateY(-2px);
+}
+
+/* Social icon links */
 .socialLinks {
   display: flex;
   gap: 1rem;
-  flex-wrap: wrap;
 }
 
 .socialLink {
@@ -86,104 +102,79 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(200, 169, 110, 0.1);
-  border: 1px solid rgba(200, 169, 110, 0.3);
+  background: rgba(200, 169, 110, 0.06);
+  border: 1px solid rgba(200, 169, 110, 0.12);
   border-radius: 50%;
-  color: var(--color-beige);
-  transition: all var(--transition-normal);
-  cursor: pointer;
+  color: var(--color-text-muted);
+  transition: all 0.4s var(--ease-out-expo);
 }
 
 .socialLink:hover {
-  background: rgba(200, 169, 110, 0.2);
-  border-color: var(--color-beige);
-  color: var(--color-gold);
+  color: var(--color-beige);
+  border-color: rgba(200, 169, 110, 0.3);
+  background: rgba(200, 169, 110, 0.1);
+  transform: translateY(-2px);
 }
 
-.bottomBar {
-  border-top: 1px solid rgba(200, 169, 110, 0.2);
-  padding: 1.5rem 2rem;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.2);
+.info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dot {
+  opacity: 0.4;
 }
 
 .copyright {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: var(--color-text-muted);
+  opacity: 0.5;
   margin: 0;
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .container {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.5rem;
-    padding: 2rem 1.5rem;
+    padding: 2rem 1rem 1.5rem;
+    gap: 1rem;
   }
 
-  .logoSmall {
-    width: 60px;
-    height: 60px;
+  .logoWrapper {
+    width: 44px;
+    height: 44px;
   }
 
-  .sectionTitle {
-    font-size: 1rem;
+  .tagline {
+    font-size: 0.8rem;
   }
 
-  .text {
-    font-size: 0.85rem;
+  .ctaRow {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .ctaLink {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .info {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .dot {
+    display: none;
   }
 
   .socialLink {
     width: 36px;
     height: 36px;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem 1rem;
-  }
-
-  .logoSmall {
-    width: 50px;
-    height: 50px;
-  }
-
-  .tagline {
-    font-size: 0.85rem;
-  }
-
-  .sectionTitle {
-    font-size: 0.95rem;
-  }
-
-  .text {
-    font-size: 0.8rem;
-  }
-
-  .socialLinks {
-    gap: 0.75rem;
-  }
-
-  .socialLink {
-    width: 32px;
-    height: 32px;
-  }
-
-  .socialLink svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  .bottomBar {
-    padding: 1rem;
-  }
-
-  .copyright {
-    font-size: 0.75rem;
   }
 }

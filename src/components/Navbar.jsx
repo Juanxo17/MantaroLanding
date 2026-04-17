@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Menu as MenuIcon, X, ShoppingBag, Star } from 'lucide-react';
-import logo from '../utils/image.png';
-
-const InstagramIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-  </svg>
-);
+﻿import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, ShoppingBag, Star } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import logo from '../utils/image.png';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { cartCount, setIsCartOpen } = useCart();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close mobile menu on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isOpen) setIsOpen(false);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isOpen]);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -26,25 +36,26 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { label: 'Menú', id: 'menu', key: 'menu' },
-    { label: 'Nosotros', id: 'about', key: 'about' },
-    { label: 'Pizzas', id: 'menu', key: 'pizzas' },
-    { label: 'Domicilios', id: 'delivery', key: 'delivery' },
-    { label: 'Ubicación', id: 'location', key: 'location' },
+    { label: 'Menú', id: 'menu' },
+    { label: 'Nosotros', id: 'about' },
+    { label: 'Domicilios', id: 'delivery' },
+    { label: 'Ubicación', id: 'location' },
   ];
 
   return (
     <motion.nav
-      className={styles.navbar}
+      className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className={styles.container}>
+        {/* Logo */}
         <motion.div
           className={styles.logo}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <img src={logo} alt="Mantaro Logo" />
         </motion.div>
@@ -52,91 +63,64 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <div className={styles.desktopMenu}>
           {navLinks.map((link) => (
-            <motion.button
-              key={link.key}
+            <button
+              key={link.label}
               className={styles.navLink}
               onClick={() => scrollToSection(link.id)}
-              whileHover={{ color: '#F5C518' }}
-              whileTap={{ scale: 0.95 }}
             >
               {link.label}
-            </motion.button>
+            </button>
           ))}
+        </div>
+
+        {/* Right side: Cart + Mobile toggle + Socials/Ratings */}
+        <div className={styles.rightSection}>
           
-          <motion.a
-            href="https://www.google.com/search?client=opera-gx&hs=MGp&sca_esv=2f8518efab07fb93&sxsrf=ANbL-n6SXtPRg7cgboe5k_UisN6HzFrquQ:1776118626721&q=caf%C3%A9+mantaro+ginebra&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOYN3wpy3qjdvT64QxSoAdeCNqLZTB9tNPlJIElSpc_7gkdPm7GL9heEH5USLiImEE0yIpxXXsMKgJGsaGDw07BVtFeK9-QTB7GH8TclXLUYks6j6aw%3D%3D&sa=X&ved=2ahUKEwivisy-7euTAxW0QzABHaESHD4QrrQLegQIGhAA&biw=1324&bih=611&dpr=1#"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.googleReviewBtn}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Star size={18} />
-            <span className={styles.igText}>Califícanos</span>
-          </motion.a>
+          {/* Header Social/Rating Links */}
+          <div className={styles.headerIcons}>
+            <a
+              href="https://www.google.com/search?client=opera-gx&hs=dhv&sca_esv=d4c24c2b28f31460&sxsrf=ANbL-n5ak1ZE9DLnWf_lRi740Wb_8Wndhw:1776461140343&q=mantaro+ginebra&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOYN3wpy3qjdvT64QxSoAdeDW-dDMAH8EOVo_kSatsNNRGi0jFHJaTOJbqWQU4BxWsnZTyqkC7Ff__IUqA8Xj7bgSlfkD9OmgfLWdpWE_vjFEgmUHsA%3D%3D&sa=X&ved=2ahUKEwjoxei56fWTAxXFTTABHXFTCEYQrrQLegQIGxAA&biw=1324&bih=611&dpr=1#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.iconLink} ${styles.iconReview}`}
+              title="Déjanos una reseña"
+            >
+              <Star size={16} fill="currentColor" />
+              <span>Califícanos</span>
+            </a>
+            <a
+              href="https://instagram.com/mantaroginebra"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.iconLink} ${styles.iconIg}`}
+              title="Síguenos en Instagram"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="5"/>
+                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+          </div>
 
-          <motion.a
-            href="https://www.instagram.com/mantaroginebra/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.instagramBtn}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <InstagramIcon />
-            <span className={styles.igText}>Síguenos</span>
-          </motion.a>
-
+          {/* Cart Button */}
           <motion.button
-            className={styles.cartButton}
+            className={styles.cartBtn}
             onClick={() => setIsCartOpen(true)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
-            <ShoppingBag size={24} />
+            <ShoppingBag size={20} />
             {cartCount > 0 && (
-              <motion.span 
+              <motion.span
                 className={styles.cartBadge}
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
+                transition={{ type: 'spring', stiffness: 500, damping: 15 }}
                 key={cartCount}
               >
                 {cartCount}
               </motion.span>
-            )}
-          </motion.button>
-        </div>
-
-        {/* Mobile Controls */}
-        <div className={styles.mobileControls}>
-          <motion.a
-            href="https://www.google.com/search?client=opera-gx&hs=MGp&sca_esv=2f8518efab07fb93&sxsrf=ANbL-n6SXtPRg7cgboe5k_UisN6HzFrquQ:1776118626721&q=caf%C3%A9+mantaro+ginebra&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOYN3wpy3qjdvT64QxSoAdeCNqLZTB9tNPlJIElSpc_7gkdPm7GL9heEH5USLiImEE0yIpxXXsMKgJGsaGDw07BVtFeK9-QTB7GH8TclXLUYks6j6aw%3D%3D&sa=X&ved=2ahUKEwivisy-7euTAxW0QzABHaESHD4QrrQLegQIGhAA&biw=1324&bih=611&dpr=1#"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.googleReviewBtn}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Star size={18} />
-          </motion.a>
-
-          <motion.a
-            href="https://www.instagram.com/mantaroginebra/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.instagramBtn}
-            whileTap={{ scale: 0.95 }}
-          >
-            <InstagramIcon />
-          </motion.a>
-
-          <motion.button
-            className={styles.mobileCartBtn}
-            onClick={() => setIsCartOpen(true)}
-            whileTap={{ scale: 0.95 }}
-          >
-            <ShoppingBag size={24} />
-            {cartCount > 0 && (
-              <span className={styles.cartBadgeMobile}>{cartCount}</span>
             )}
           </motion.button>
 
@@ -144,34 +128,79 @@ export default function Navbar() {
           <motion.button
             className={styles.mobileMenuBtn}
             onClick={() => setIsOpen(!isOpen)}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.9 }}
           >
-            {isOpen ? <X size={28} /> : <MenuIcon size={28} />}
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </motion.button>
         </div>
 
-        {/* Mobile Menu */}
-        {isOpen && (
-          <motion.div
-            className={styles.mobileMenu}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-          >
-            {navLinks.map((link) => (
-              <motion.button
-                key={link.key}
-                className={styles.mobileNavLink}
-                onClick={() => scrollToSection(link.id)}
-                whileHover={{ x: 10 }}
+        {/* Mobile Menu â€” Full overlay */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className={styles.mobileMenu}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.div
+                className={styles.mobileMenuInner}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3, delay: 0.05 }}
               >
-                {link.label}
-              </motion.button>
-            ))}
-          </motion.div>
-        )}
+                {navLinks.map((link, i) => (
+                  <motion.button
+                    key={link.label}
+                    className={styles.mobileNavLink}
+                    onClick={() => scrollToSection(link.id)}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + i * 0.06, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    {link.label}
+                  </motion.button>
+                ))}
+
+                <motion.div 
+                    className={styles.mobileIcons}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 0.4 }}
+                  >
+                    <a
+                      href="https://www.google.com/search?client=opera-gx&hs=dhv&sca_esv=d4c24c2b28f31460&sxsrf=ANbL-n5ak1ZE9DLnWf_lRi740Wb_8Wndhw:1776461140343&q=mantaro+ginebra&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOYN3wpy3qjdvT64QxSoAdeDW-dDMAH8EOVo_kSatsNNRGi0jFHJaTOJbqWQU4BxWsnZTyqkC7Ff__IUqA8Xj7bgSlfkD9OmgfLWdpWE_vjFEgmUHsA%3D%3D&sa=X&ved=2ahUKEwjoxei56fWTAxXFTTABHXFTCEYQrrQLegQIGxAA&biw=1324&bih=611&dpr=1#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${styles.iconLink} ${styles.iconReview}`}
+                      title="Déjanos una reseña"
+                    >
+                      <Star size={24} fill="currentColor" />
+                      <span>Califícanos</span>
+                    </a>
+                    <a
+                      href="https://instagram.com/mantaroginebra"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${styles.iconLink} ${styles.iconIg}`}
+                      title="Síguenos en Instagram"
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <circle cx="12" cy="12" r="5"/>
+                        <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+                      </svg>
+                    </a>
+                  </motion.div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.nav>
   );
 }
+
+

@@ -7,61 +7,73 @@ import styles from './HowToOrder.module.css';
 export default function HowToOrder() {
   const steps = [
     {
-      icon: <Coffee size={32} />,
-      title: "1. Elige tu antojo",
-      desc: "Explora nuestro menú y toca el botón '+' para armar tu carrito de compras."
+      icon: <Coffee size={28} />,
+      number: '01',
+      title: 'Elige tu antojo',
+      desc: "Explora nuestro menú y toca el botón '+' para armar tu pedido.",
     },
     {
-      icon: <MessageCircle size={32} />,
-      title: "2. O pide por el Chat",
-      desc: "Toca el ícono de mensajes de la esquina, escribe 'Hola' y responde con un número. ¡Fácil y rápido!"
+      icon: <MessageCircle size={28} />,
+      number: '02',
+      title: 'O pide por el Chat',
+      desc: "Toca el ícono de mensajes, escribe 'Hola' y sigue las instrucciones.",
     },
     {
-      icon: <Smartphone size={32} />,
-      title: "3. Listo en WhatsApp",
-      desc: "Todo se enviará limpio y ordenado a nuestro WhatsApp oficial para prepararlo de inmediato."
-    }
+      icon: <Smartphone size={28} />,
+      number: '03',
+      title: 'Listo en WhatsApp',
+      desc: 'Todo se envía limpio y ordenado a nuestro WhatsApp para prepararlo.',
+    },
   ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    hidden: { opacity: 0, y: 25 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
   };
 
   return (
     <section className={styles.section} id="como-pedir">
       <div className={styles.container}>
         <div className={styles.header}>
-          <BlurText 
-            text="¿Cómo hacer tu pedido?" 
-            className={styles.title} 
-            delay={0.1} 
-            animateBy="words" 
-            direction="top" 
+          <BlurText
+            text="¿Cómo hacer tu pedido?"
+            className={styles.title}
+            delay={0.1}
+            animateBy="words"
+            direction="top"
           />
-          <p className={styles.subtitle}>Sin complicaciones, directo al grano.</p>
+          <p className={styles.subtitle}>Simple, rápido y sin complicaciones.</p>
         </div>
 
-        <motion.div 
+        <motion.div
           className={styles.grid}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: '-50px' }}
         >
           {steps.map((step, index) => (
-            <motion.div key={index} className={styles.card} variants={itemVariants}>
-              <div className={styles.iconWrapper}>
-                {step.icon}
-              </div>
-              <h3 className={styles.cardTitle}>{step.title}</h3>
-              <p className={styles.cardDesc}>{step.desc}</p>
-            </motion.div>
+            <React.Fragment key={index}>
+              <motion.div className={styles.card} variants={itemVariants}>
+                <span className={styles.bgNumber}>{step.number}</span>
+                <div className={styles.iconWrapper}>
+                  {step.icon}
+                </div>
+                <h3 className={styles.cardTitle}>{step.title}</h3>
+                <p className={styles.cardDesc}>{step.desc}</p>
+              </motion.div>
+              {/* Connector line between cards (not after last) */}
+              {index < steps.length - 1 && (
+                <div className={styles.connector}>
+                  <div className={styles.connectorLine} />
+                </div>
+              )}
+            </React.Fragment>
           ))}
         </motion.div>
       </div>

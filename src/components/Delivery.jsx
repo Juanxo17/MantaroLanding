@@ -1,6 +1,6 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, Bike } from 'lucide-react';
 import styles from './Delivery.module.css';
 
 export default function Delivery() {
@@ -11,55 +11,38 @@ export default function Delivery() {
     );
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
-  };
-
   return (
     <section className={styles.delivery} id="delivery">
       <motion.div
         className={styles.container}
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       >
-        <motion.h2
-          className={styles.title}
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <motion.div
+          className={styles.iconWrapper}
+          animate={{ y: [0, -5, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
         >
-          Hacemos domicilios a todo Ginebra
-        </motion.h2>
+          <Bike size={36} strokeWidth={1.5} />
+        </motion.div>
 
-        <motion.p
-          className={styles.description}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          ¡Disfruta de nuestros sabores desde la comodidad de tu hogar!
-        </motion.p>
+        <h2 className={styles.title}>
+          Domicilios a todo Ginebra
+        </h2>
+
+        <p className={styles.description}>
+          Disfruta nuestros sabores desde la comodidad de tu hogar.
+        </p>
 
         <motion.button
           className={`btn btn-whatsapp ${styles.ctaButton}`}
           onClick={openWhatsApp}
-          whileHover={{ scale: 1.08 }}
-          whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
         >
-          <MessageCircle size={24} />
+          <MessageCircle size={20} />
           Pedir por WhatsApp
         </motion.button>
       </motion.div>

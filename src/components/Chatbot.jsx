@@ -1,14 +1,36 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, Loader } from 'lucide-react';
+import { MessageCircle, X, Send } from 'lucide-react';
+import logo from '../utils/image.png';
 import styles from './Chatbot.module.css';
+
+// Typing dots indicator
+function TypingDots() {
+  return (
+    <div className={styles.typingDots}>
+      {[0, 1, 2].map((i) => (
+        <motion.span
+          key={i}
+          className={styles.dot}
+          animate={{ y: [0, -5, 0] }}
+          transition={{
+            duration: 0.5,
+            repeat: Infinity,
+            delay: i * 0.15,
+            ease: 'easeInOut',
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: '¡Hola! ☕ Soy tu mesero virtual de Mantaro. Estoy aquí para guiarte en tu pedido.\n\nPara empezar de la forma más rápida y amigable, solo envíame la palabra "Hola" 👇',
+      content: 'Â¡Hola! â˜• Soy tu mesero virtual de Mantaro. Estoy aquÃ­ para guiarte en tu pedido.\n\nPara empezar de la forma mÃ¡s rÃ¡pida y amigable, solo envÃ­ame la palabra "Hola" ðŸ‘‡',
     },
   ]);
   const [input, setInput] = useState('');
@@ -45,7 +67,7 @@ export default function Chatbot() {
 
     const userMessage = { role: 'user', content: input };
     const newMessages = [...messages, userMessage];
-    
+
     setMessages(newMessages);
     setInput('');
     setIsLoading(true);
@@ -82,7 +104,7 @@ export default function Chatbot() {
       console.error('Error sending message:', error);
       const errorMessage = {
         role: 'assistant',
-        content: 'Lo siento, no pude conectarme al servidor. Asegúrate de ejecutar el backend.',
+        content: 'Lo siento, no pude conectarme al servidor. AsegÃºrate de ejecutar el backend.',
       };
       setMessages([...newMessages, errorMessage]);
     } finally {
@@ -101,21 +123,25 @@ export default function Chatbot() {
         {isOpen && (
           <motion.div
             className={styles.chatPanel}
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.92, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, scale: 0.92, y: 20 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className={styles.header}>
-              <h3>Mantaro Ginebra</h3>
-              <motion.button
+              <div className={styles.headerLeft}>
+                <img src={logo} alt="Mantaro" className={styles.headerLogo} />
+                <div>
+                  <h3>Mesero Virtual</h3>
+                  <span className={styles.headerStatus}>â˜• En lÃ­nea</span>
+                </div>
+              </div>
+              <button
                 className={styles.closeBtn}
                 onClick={() => setIsOpen(false)}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
               >
-                <X size={20} />
-              </motion.button>
+                <X size={18} />
+              </button>
             </div>
 
             <div className={styles.messagesContainer}>
@@ -123,31 +149,31 @@ export default function Chatbot() {
                 <motion.div
                   key={index}
                   className={`${styles.message} ${styles[message.role]}`}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className={styles.messageBubble}>
                     {message.content}
                     <div className={styles.actionsContainer}>
                       {message.urlAccion && (
-                        <a 
-                          href={message.urlAccion} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
+                        <a
+                          href={message.urlAccion}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className={styles.actionBtn}
                         >
-                          {message.textoAccion || 'Haz clic aquí'}
+                          {message.textoAccion || 'Haz clic aquÃ­'}
                         </a>
                       )}
                       {message.urlSecundaria && (
-                        <a 
-                          href={message.urlSecundaria} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
+                        <a
+                          href={message.urlSecundaria}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className={`${styles.actionBtn} ${styles.actionBtnSecondary}`}
                         >
-                          {message.textoSecundario || '🌟 Déjanos una reseña'}
+                          {message.textoSecundario || 'ðŸŒŸ DÃ©janos una reseÃ±a'}
                         </a>
                       )}
                     </div>
@@ -157,7 +183,7 @@ export default function Chatbot() {
               {isLoading && (
                 <div className={`${styles.message} ${styles.assistant}`}>
                   <div className={styles.messageBubble}>
-                    <Loader size={16} className={styles.spinner} />
+                    <TypingDots />
                   </div>
                 </div>
               )}
@@ -173,15 +199,13 @@ export default function Chatbot() {
                 className={styles.input}
                 disabled={isLoading}
               />
-              <motion.button
+              <button
                 type="submit"
                 className={styles.sendBtn}
                 disabled={isLoading || !input.trim()}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
               >
-                <Send size={18} />
-              </motion.button>
+                <Send size={16} />
+              </button>
             </form>
 
             {shouldShowWhatsAppButton && (
@@ -200,17 +224,18 @@ export default function Chatbot() {
         )}
       </AnimatePresence>
 
-      {/* Floating Button */}
+      {/* Floating Button with Pulse */}
       <motion.button
         className={styles.floatingBtn}
         onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.92 }}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.5 }}
+        transition={{ delay: 1, type: 'spring', stiffness: 200, damping: 15 }}
       >
-        {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
+        {!isOpen && <span className={styles.pulse} />}
+        {isOpen ? <X size={22} /> : <MessageCircle size={22} />}
       </motion.button>
     </div>
   );

@@ -5,39 +5,39 @@ import styles from "./AuroraBackground.module.css";
 export const AuroraBackground = ({ children }) => {
   return (
     <div className={styles.auroraWrapper}>
-      {/* Background Orbs */}
+      {/* Background Orbs — Slow & Ethereal */}
       <motion.div
         className={`${styles.orb} ${styles.orb1}`}
         animate={{
-          x: [0, 100, -50, 0],
-          y: [0, -100, 50, 0],
-          scale: [1, 1.2, 0.8, 1],
+          x: [0, 80, -30, 0],
+          y: [0, -60, 30, 0],
+          scale: [1, 1.1, 0.9, 1],
         }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
       />
       <motion.div
         className={`${styles.orb} ${styles.orb2}`}
         animate={{
-          x: [-50, 50, -100, -50],
-          y: [-50, -100, 50, -50],
-          scale: [0.8, 1.3, 1, 0.8],
+          x: [-30, 40, -60, -30],
+          y: [-30, -60, 30, -30],
+          scale: [0.9, 1.15, 1, 0.9],
         }}
-        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 42, repeat: Infinity, ease: "linear" }}
       />
       <motion.div
         className={`${styles.orb} ${styles.orb3}`}
         animate={{
-          x: [100, -50, 50, 100],
-          y: [50, 100, -50, 50],
-          scale: [1.2, 0.9, 1.1, 1.2],
+          x: [60, -30, 40, 60],
+          y: [30, 60, -30, 30],
+          scale: [1.1, 0.9, 1.05, 1.1],
         }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 48, repeat: Infinity, ease: "linear" }}
       />
 
-      {/* Tribal Pattern Texture */}
+      {/* Tribal Pattern — Very Subtle */}
       <div className={styles.tribalPattern}></div>
 
-      {/* Noise Texture (Sutil) */}
+      {/* Noise Texture — Barely Visible */}
       <div className={styles.noiseFilter}></div>
 
       {/* Content */}

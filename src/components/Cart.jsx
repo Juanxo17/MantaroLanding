@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
 import { useCart } from '../context/CartContext';
@@ -31,15 +31,15 @@ export default function Cart() {
   const handleCheckout = () => {
     if (cartItems.length === 0) return;
     if (!detalleEntrega.trim()) {
-      alert(`Por favor ingresa ${tipoEntrega === 'mesa' ? 'tu número de mesa' : 'tu dirección para el domicilio'}.`);
+      alert(`Por favor ingresa ${tipoEntrega === 'mesa' ? 'tu nÃºmero de mesa' : 'tu direcciÃ³n para el domicilio'}.`);
       return;
     }
 
-    let message = '¡Hola Mantaro! Quiero hacer el siguiente pedido:\n\n';
+    let message = 'Â¡Hola Mantaro! Quiero hacer el siguiente pedido:\n\n';
     
     // Info de entrega
     message += `*Tipo de entrega:* ${tipoEntrega === 'mesa' ? 'En el Local' : 'Domicilio'}\n`;
-    message += `*${tipoEntrega === 'mesa' ? 'Mesa' : 'Dirección'}:* ${detalleEntrega}\n\n`;
+    message += `*${tipoEntrega === 'mesa' ? 'Mesa' : 'DirecciÃ³n'}:* ${detalleEntrega}\n\n`;
 
     cartItems.forEach((item) => {
       const price = parsePrice(item.precio);
@@ -96,12 +96,12 @@ export default function Cart() {
               {cartItems.length === 0 ? (
                 <div className={styles.emptyCart}>
                   <ShoppingBag size={48} className={styles.emptyIcon} />
-                  <p>Tu carrito está vacío</p>
+                  <p>Tu carrito estÃ¡ vacÃ­o</p>
                   <button
                     className={styles.continueBtn}
                     onClick={() => setIsCartOpen(false)}
                   >
-                    Ver Menú
+                    Ver MenÃº
                   </button>
                 </div>
               ) : (
@@ -146,7 +146,7 @@ export default function Cart() {
                   
                   {/* Textarea para notas */}
                   <div className={styles.notesContainer}>
-                    <label htmlFor="cart-notes">Aclaraciones (sabores, tamaños, sin azúcar...)</label>
+                    <label htmlFor="cart-notes">Aclaraciones (sabores, tamaÃ±os, sin azÃºcar...)</label>
                     <textarea
                       id="cart-notes"
                       className={styles.notesInput}
@@ -157,9 +157,9 @@ export default function Cart() {
                     />
                   </div>
 
-                  {/* Configuración de entrega */}
+                  {/* ConfiguraciÃ³n de entrega */}
                   <div className={styles.deliveryConfig}>
-                    <p className={styles.deliveryLabel}>¿Dónde vas a disfrutar tu pedido?</p>
+                    <p className={styles.deliveryLabel}>Â¿DÃ³nde vas a disfrutar tu pedido?</p>
                     <div className={styles.deliveryOptions}>
                       <button
                         className={tipoEntrega === 'mesa' ? styles.deliveryActive : styles.deliveryBtn}
@@ -178,7 +178,7 @@ export default function Cart() {
                     <div className={styles.deliveryDetails}>
                       {tipoEntrega === 'mesa' ? (
                         <>
-                          <label htmlFor="mesa">Número de Mesa</label>
+                          <label htmlFor="mesa">NÃºmero de Mesa</label>
                           <input
                             id="mesa"
                             type="text"
@@ -190,7 +190,7 @@ export default function Cart() {
                         </>
                       ) : (
                         <>
-                          <label htmlFor="direccion">Dirección de Envío</label>
+                          <label htmlFor="direccion">DirecciÃ³n de EnvÃ­o</label>
                           <input
                             id="direccion"
                             type="text"

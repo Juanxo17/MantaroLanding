@@ -21,16 +21,16 @@ const BlurText = ({
   };
 
   const child = {
-    hidden: { 
-      filter: 'blur(10px)', 
-      opacity: 0, 
-      y: direction === 'top' ? -50 : 50 
+    hidden: {
+      filter: 'blur(6px)',
+      opacity: 0,
+      y: direction === 'top' ? -20 : 20,
     },
-    visible: { 
-      filter: 'blur(0px)', 
-      opacity: 1, 
+    visible: {
+      filter: 'blur(0px)',
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: 'easeOut' }
+      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
@@ -41,7 +41,7 @@ const BlurText = ({
       variants={container}
       initial="hidden"
       animate={inView ? 'visible' : 'hidden'}
-      style={{ display: 'flex', flexWrap: 'wrap' }}
+      style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
     >
       {elements.map((element, index) => (
         <motion.span

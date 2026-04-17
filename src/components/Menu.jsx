@@ -6,6 +6,15 @@ import { menu, categories } from '../data/menu';
 import { useCart } from '../context/CartContext';
 import styles from './Menu.module.css';
 
+const categoryEmojis = {
+  bebidasCalientes: '☕',
+  bebidasFrias: '🧊',
+  pizzas: '🍕',
+  brunch: '🥐',
+  endulzate: '🍰',
+  licores: '🍷',
+};
+
 const MenuItemCard = ({ item, itemVariants }) => {
   const { addToCart } = useCart();
   const [selectedOption, setSelectedOption] = useState(0);
@@ -15,17 +24,17 @@ const MenuItemCard = ({ item, itemVariants }) => {
 
   let options = [];
   if (hasMultipleOptions) {
-    const descs = item.descripcion && item.descripcion.includes('/') 
-      ? item.descripcion.split('/').map(d => d.trim()) 
-      : ['Normal', 'Grande']; 
+    const descs = item.descripcion && item.descripcion.includes('/')
+      ? item.descripcion.split('/').map(d => d.trim())
+      : ['Normal', 'Grande'];
 
-    const names = item.nombre.includes('/') 
-      ? item.nombre.split('/').map(n => n.trim()) 
+    const names = item.nombre.includes('/')
+      ? item.nombre.split('/').map(n => n.trim())
       : [];
 
     options = prices.map((price, i) => {
       const optName = names[i] || item.nombre;
-      const optDesc = descs[i] || `Opción ${i+1}`;
+      const optDesc = descs[i] || `Opción ${i + 1}`;
       return { price, name: optName, desc: names.length > 0 ? '' : optDesc };
     });
   }
@@ -39,7 +48,7 @@ const MenuItemCard = ({ item, itemVariants }) => {
         ...item,
         nombre: item.nombre.includes('/') ? option.name : `${item.nombre} - ${option.desc}`,
         precio: option.price,
-        descripcion: option.desc
+        descripcion: option.desc,
       };
       addToCart(tailoredItem);
     }
@@ -49,51 +58,54 @@ const MenuItemCard = ({ item, itemVariants }) => {
     <motion.div
       className={styles.card}
       variants={itemVariants}
-      whileHover={{ y: -5 }}
+      whileHover={{ y: -3 }}
     >
       <div className={styles.cardContent}>
-        <h3 className={styles.itemName}>{item.nombre}</h3>
-        {item.descripcion && (
+        <div className={styles.cardHeader}>
+          <h3 className={styles.itemName}>{item.nombre}</h3>
+          {!hasMultipleOptions && (
+            <span className={styles.itemPrice}>${item.precio}</span>
+          )}
+        </div>
+
+        {item.descripcion && !hasMultipleOptions && (
           <p className={styles.itemDescription}>{item.descripcion}</p>
         )}
-        
+
         {hasMultipleOptions ? (
           <div className={styles.variantSelector}>
-            {options.map((opt, i) => (
-              <div 
-                key={i} 
-                className={`${styles.variantOption} ${selectedOption === i ? styles.selected : ''}`}
-                onClick={() => setSelectedOption(i)}
-              >
-                <div className={styles.variantInfo}>
-                  <span className={styles.variantName}>{opt.name !== item.nombre ? opt.name : opt.desc}</span>
+            <div className={styles.variantPills}>
+              {options.map((opt, i) => (
+                <button
+                  key={i}
+                  className={`${styles.variantPill} ${selectedOption === i ? styles.variantActive : ''}`}
+                  onClick={() => setSelectedOption(i)}
+                >
+                  <span className={styles.variantLabel}>
+                    {opt.name !== item.nombre ? opt.name : opt.desc}
+                  </span>
                   <span className={styles.variantPrice}>${opt.price}</span>
-                </div>
-                <div className={styles.variantRadio}></div>
-              </div>
-            ))}
-            <div className={styles.priceRow} style={{ marginTop: '0.5rem' }}>
-              <span className={styles.itemPrice} style={{ visibility: 'hidden' }}>-</span>
-              <motion.button
-                className={styles.addBtn}
-                onClick={handleAdd}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Plus size={20} />
-              </motion.button>
+                </button>
+              ))}
             </div>
-          </div>
-        ) : (
-          <div className={styles.priceRow}>
-            <p className={styles.itemPrice}>${item.precio}</p>
             <motion.button
               className={styles.addBtn}
               onClick={handleAdd}
               whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              whileTap={{ scale: 0.85 }}
             >
-              <Plus size={20} />
+              <Plus size={18} />
+            </motion.button>
+          </div>
+        ) : (
+          <div className={styles.cardFooter}>
+            <motion.button
+              className={styles.addBtn}
+              onClick={handleAdd}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.85 }}
+            >
+              <Plus size={18} />
             </motion.button>
           </div>
         )}
@@ -102,7 +114,7 @@ const MenuItemCard = ({ item, itemVariants }) => {
   );
 };
 
-export default function Menu() {
+export default function MenuSection() {
   const [activeCategory, setActiveCategory] = useState('bebidasCalientes');
 
   const currentItems = menu[activeCategory] || [];
@@ -112,51 +124,57 @@ export default function Menu() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.06,
         delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.4 },
+      transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
     },
-    exit: { opacity: 0, y: 20, transition: { duration: 0.2 } },
+    exit: { opacity: 0, y: 10, transition: { duration: 0.2 } },
   };
 
   return (
     <section className={styles.menu} id="menu">
       <div className={styles.container}>
-        <BlurText 
-          text="Nuestro Menú" 
-          className={styles.title} 
-          delay={0.15} 
-          animateBy="letters" 
-          direction="top" 
+        <BlurText
+          text="Nuestro Menú"
+          className={styles.title}
+          delay={0.12}
+          animateBy="letters"
+          direction="top"
         />
 
-        {/* Category Tabs */}
+        {/* Category Tabs — Pill selector */}
         <motion.div
           className={styles.tabs}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           {categories.map((category) => (
-            <motion.button
+            <button
               key={category.key}
               className={`${styles.tab} ${activeCategory === category.key ? styles.active : ''}`}
               onClick={() => setActiveCategory(category.key)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
+              <span className={styles.tabEmoji}>{categoryEmojis[category.key]}</span>
               {category.label}
-            </motion.button>
+              {activeCategory === category.key && (
+                <motion.div
+                  className={styles.tabIndicator}
+                  layoutId="activeTab"
+                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                />
+              )}
+            </button>
           ))}
         </motion.div>
 
@@ -168,12 +186,13 @@ export default function Menu() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
+            exit="exit"
           >
             {currentItems.map((item, index) => (
-              <MenuItemCard 
-                key={`${item.nombre}-${index}`} 
-                item={item} 
-                itemVariants={itemVariants} 
+              <MenuItemCard
+                key={`${item.nombre}-${index}`}
+                item={item}
+                itemVariants={itemVariants}
               />
             ))}
           </motion.div>
