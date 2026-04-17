@@ -31,15 +31,15 @@ export default function Cart() {
   const handleCheckout = () => {
     if (cartItems.length === 0) return;
     if (!detalleEntrega.trim()) {
-      alert(`Por favor ingresa ${tipoEntrega === 'mesa' ? 'tu nÃºmero de mesa' : 'tu direcciÃ³n para el domicilio'}.`);
+      alert(`Por favor ingresa ${tipoEntrega === 'mesa' ? 'tu número de mesa' : 'tu Dirección para el domicilio'}.`);
       return;
     }
 
-    let message = 'Â¡Hola Mantaro! Quiero hacer el siguiente pedido:\n\n';
+    let message = '¡Hola Mantaro! Quiero hacer el siguiente pedido:\n\n';
     
     // Info de entrega
     message += `*Tipo de entrega:* ${tipoEntrega === 'mesa' ? 'En el Local' : 'Domicilio'}\n`;
-    message += `*${tipoEntrega === 'mesa' ? 'Mesa' : 'DirecciÃ³n'}:* ${detalleEntrega}\n\n`;
+    message += `*${tipoEntrega === 'mesa' ? 'Mesa' : 'Dirección'}:* ${detalleEntrega}\n\n`;
 
     cartItems.forEach((item) => {
       const price = parsePrice(item.precio);
@@ -96,12 +96,12 @@ export default function Cart() {
               {cartItems.length === 0 ? (
                 <div className={styles.emptyCart}>
                   <ShoppingBag size={48} className={styles.emptyIcon} />
-                  <p>Tu carrito estÃ¡ vacÃ­o</p>
+                  <p>Tu carrito está vací­o</p>
                   <button
                     className={styles.continueBtn}
                     onClick={() => setIsCartOpen(false)}
                   >
-                    Ver MenÃº
+                    Ver menú
                   </button>
                 </div>
               ) : (
@@ -146,7 +146,7 @@ export default function Cart() {
                   
                   {/* Textarea para notas */}
                   <div className={styles.notesContainer}>
-                    <label htmlFor="cart-notes">Aclaraciones (sabores, tamaÃ±os, sin azÃºcar...)</label>
+                    <label htmlFor="cart-notes">Aclaraciones (sabores, tamaños, sin azúcar...)</label>
                     <textarea
                       id="cart-notes"
                       className={styles.notesInput}
@@ -157,9 +157,9 @@ export default function Cart() {
                     />
                   </div>
 
-                  {/* ConfiguraciÃ³n de entrega */}
+                  {/* Configuración de entrega */}
                   <div className={styles.deliveryConfig}>
-                    <p className={styles.deliveryLabel}>Â¿DÃ³nde vas a disfrutar tu pedido?</p>
+                    <p className={styles.deliveryLabel}>¿Dónde vas a disfrutar tu pedido?</p>
                     <div className={styles.deliveryOptions}>
                       <button
                         className={tipoEntrega === 'mesa' ? styles.deliveryActive : styles.deliveryBtn}
@@ -178,7 +178,7 @@ export default function Cart() {
                     <div className={styles.deliveryDetails}>
                       {tipoEntrega === 'mesa' ? (
                         <>
-                          <label htmlFor="mesa">NÃºmero de Mesa</label>
+                          <label htmlFor="mesa">Número de Mesa</label>
                           <input
                             id="mesa"
                             type="text"
@@ -190,7 +190,7 @@ export default function Cart() {
                         </>
                       ) : (
                         <>
-                          <label htmlFor="direccion">DirecciÃ³n de EnvÃ­o</label>
+                          <label htmlFor="direccion">Dirección de Enví­o</label>
                           <input
                             id="direccion"
                             type="text"
@@ -229,3 +229,5 @@ export default function Cart() {
     </AnimatePresence>
   );
 }
+
+

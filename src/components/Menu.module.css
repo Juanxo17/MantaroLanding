@@ -1,4 +1,4 @@
-.menu {
+﻿.menu {
   padding: clamp(4rem, 8vw, 7rem) 24px;
   min-height: 100vh;
 }
@@ -17,7 +17,7 @@
   margin-bottom: 2.5rem;
 }
 
-/* Tabs — Horizontal scrollable pill selector */
+/* Tabs â€” Horizontal scrollable pill selector */
 .tabs {
   display: flex;
   gap: 0.5rem;
@@ -178,7 +178,7 @@
   background: var(--color-gold);
 }
 
-/* Variant Selector — Pill style */
+/* Variant Selector â€” Pill style */
 .variantSelector {
   display: flex;
   align-items: flex-end;
@@ -302,3 +302,4 @@
     font-size: 0.8rem;
   }
 }
+

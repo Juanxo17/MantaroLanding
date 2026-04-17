@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import BlurText from './BlurText';
@@ -8,7 +8,7 @@ import styles from './Menu.module.css';
 
 const categoryEmojis = {
   bebidasCalientes: '☕',
-  bebidasFrias: '🧊',
+  bebidasFrias: '🥤',
   pizzas: '🍕',
   brunch: '🥐',
   endulzate: '🍰',
@@ -144,14 +144,14 @@ export default function MenuSection() {
     <section className={styles.menu} id="menu">
       <div className={styles.container}>
         <BlurText
-          text="Nuestro Menú"
+          text="Nuestro menú"
           className={styles.title}
           delay={0.12}
           animateBy="letters"
           direction="top"
         />
 
-        {/* Category Tabs — Pill selector */}
+        {/* Category Tabs â€” Pill selector */}
         <motion.div
           className={styles.tabs}
           initial={{ opacity: 0, y: 10 }}
@@ -201,3 +201,6 @@ export default function MenuSection() {
     </section>
   );
 }
+
+
+

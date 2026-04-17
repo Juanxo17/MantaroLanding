@@ -34,7 +34,7 @@ export default function Footer() {
 
         {/* Tagline */}
         <motion.p className={styles.tagline} variants={itemVariants}>
-          Deleitar el paladar en una atmÃ³sfera mÃ¡gica âœ¨
+          Deleitar el paladar en una atmósfera mágica ✨
         </motion.p>
 
         {/* CTA Buttons â€” Instagram + Google Review */}
@@ -46,7 +46,7 @@ export default function Footer() {
             className={`${styles.ctaLink} ${styles.ctaInstagram}`}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-            SÃ­guenos en Instagram
+            Síguenos en Instagram
           </a>
           <a
             href="https://www.google.com/search?client=opera-gx&hs=dhv&sca_esv=d4c24c2b28f31460&sxsrf=ANbL-n5ak1ZE9DLnWf_lRi740Wb_8Wndhw:1776461140343&q=mantaro+ginebra&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOYN3wpy3qjdvT64QxSoAdeDW-dDMAH8EOVo_kSatsNNRGi0jFHJaTOJbqWQU4BxWsnZTyqkC7Ff__IUqA8Xj7bgSlfkD9OmgfLWdpWE_vjFEgmUHsA%3D%3D&sa=X&ved=2ahUKEwjoxei56fWTAxXFTTABHXFTCEYQrrQLegQIGxAA&biw=1324&bih=611&dpr=1#"
@@ -55,7 +55,7 @@ export default function Footer() {
             className={`${styles.ctaLink} ${styles.ctaReview}`}
           >
             <Star size={18} />
-            DÃ©janos una reseÃ±a
+            Déjanos una reseña
           </a>
         </motion.div>
 
@@ -99,15 +99,18 @@ export default function Footer() {
         {/* Compact info */}
         <motion.div className={styles.info} variants={itemVariants}>
           <span>Carrera 1 Calle 5 Esquina, Ginebra</span>
-          <span className={styles.dot}>Â·</span>
-          <span>Lunâ€“Dom 9amâ€“10pm</span>
+          <span className={styles.dot}>·</span>
+          <span>Lun–Dom 9am–10pm</span>
         </motion.div>
 
         {/* Copyright */}
         <motion.p className={styles.copyright} variants={itemVariants}>
-          Â© {currentYear} Mantaro Ginebra
+          &copy; {currentYear} Mantaro Ginebra
         </motion.p>
       </motion.div>
     </footer>
   );
 }
+
+
+

@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import './styles/globals.css'
 import { AuroraBackground } from './components/AuroraBackground'
 import { CartProvider } from './context/CartContext'
@@ -46,3 +46,5 @@ function App() {
 }
 
 export default App
+
+

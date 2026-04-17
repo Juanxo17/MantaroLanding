@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import styles from './SectionDivider.module.css';
 
 export default function SectionDivider() {
@@ -10,3 +10,5 @@ export default function SectionDivider() {
     </div>
   );
 }
+
+

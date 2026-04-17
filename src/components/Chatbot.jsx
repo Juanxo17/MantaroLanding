@@ -30,7 +30,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: 'Â¡Hola! â˜• Soy tu mesero virtual de Mantaro. Estoy aquÃ­ para guiarte en tu pedido.\n\nPara empezar de la forma mÃ¡s rÃ¡pida y amigable, solo envÃ­ame la palabra "Hola" ðŸ‘‡',
+      content: '¡Hola! ☕ Soy tu mesero virtual de Mantaro. Estoy aquí para guiarte en tu pedido.\n\nPara empezar de la forma más rápida y amigable, solo envíame la palabra "Hola" 👇',
     },
   ]);
   const [input, setInput] = useState('');
@@ -104,7 +104,7 @@ export default function Chatbot() {
       console.error('Error sending message:', error);
       const errorMessage = {
         role: 'assistant',
-        content: 'Lo siento, no pude conectarme al servidor. AsegÃºrate de ejecutar el backend.',
+        content: 'Lo siento, no pude conectarme al servidor. Asegúrate de ejecutar el backend.',
       };
       setMessages([...newMessages, errorMessage]);
     } finally {
@@ -133,7 +133,7 @@ export default function Chatbot() {
                 <img src={logo} alt="Mantaro" className={styles.headerLogo} />
                 <div>
                   <h3>Mesero Virtual</h3>
-                  <span className={styles.headerStatus}>â˜• En lÃ­nea</span>
+                  <span className={styles.headerStatus}>☕ En lí­nea</span>
                 </div>
               </div>
               <button
@@ -163,7 +163,7 @@ export default function Chatbot() {
                           rel="noopener noreferrer"
                           className={styles.actionBtn}
                         >
-                          {message.textoAccion || 'Haz clic aquÃ­'}
+                          {message.textoAccion || 'Haz clic aquí'}
                         </a>
                       )}
                       {message.urlSecundaria && (
@@ -173,7 +173,7 @@ export default function Chatbot() {
                           rel="noopener noreferrer"
                           className={`${styles.actionBtn} ${styles.actionBtnSecondary}`}
                         >
-                          {message.textoSecundario || 'ðŸŒŸ DÃ©janos una reseÃ±a'}
+                          {message.textoSecundario || 'ðŸŒŸ Déjanos una reseña'}
                         </a>
                       )}
                     </div>
@@ -240,3 +240,6 @@ export default function Chatbot() {
     </div>
   );
 }
+
+
+

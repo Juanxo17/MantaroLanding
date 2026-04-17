@@ -24,7 +24,7 @@ export default function Location() {
   const infoCards = [
     {
       icon: <MapPin size={22} strokeWidth={1.5} />,
-      title: 'DirecciÃ³n',
+      title: 'Dirección',
       content: (
         <>
           Carrera 1 Calle 5 Esquina<br />
@@ -38,8 +38,8 @@ export default function Location() {
       title: 'Horarios',
       content: (
         <>
-          <strong>Lunâ€“Jue y Dom:</strong> 9amâ€“10pm<br />
-          <strong>Vieâ€“SÃ¡b:</strong> 9amâ€“11pm
+          <strong>Lun–Jue y Dom:</strong> 9am–10pm<br />
+          <strong>Vie–Sáb:</strong> 9am–11pm
         </>
       ),
     },
@@ -65,7 +65,7 @@ export default function Location() {
         viewport={{ once: true, amount: 0.2 }}
       >
         <motion.h2 className={styles.title} variants={itemVariants}>
-          UbicaciÃ³n
+          Ubicación
         </motion.h2>
 
         {/* Google Maps */}
@@ -96,3 +96,6 @@ export default function Location() {
     </section>
   );
 }
+
+
+

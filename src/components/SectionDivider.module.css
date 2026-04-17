@@ -1,4 +1,4 @@
-.divider {
+﻿.divider {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,3 +22,4 @@
   opacity: 0.6;
   flex-shrink: 0;
 }
+

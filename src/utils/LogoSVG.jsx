@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Logo Component - Genera un logo SVG para Mantaro Ginebra
  * Logo tribal/precolombino circular
  */
@@ -28,7 +28,7 @@ export default function LogoSVG({ size = 200, className = '' }) {
       {/* Fondo circular */}
       <circle cx="100" cy="100" r="95" fill="url(#logoBg)" stroke="#C8A96E" strokeWidth="2" />
 
-      {/* Círculo interior más oscuro */}
+      {/* Cí­rculo interior más oscuro */}
       <circle cx="100" cy="100" r="85" fill="#1a1008" opacity="0.3" stroke="#C8A96E" strokeWidth="1" />
 
       {/* Patrón tribal - diamantes */}
@@ -42,7 +42,7 @@ export default function LogoSVG({ size = 200, className = '' }) {
         <path d="M 120 120 L 130 125 L 125 135 L 115 130 Z" />
       </g>
 
-      {/* Líneas ornamentales horizontales */}
+      {/* Lí­neas ornamentales horizontales */}
       <g stroke="#F5C518" strokeWidth="1" opacity="0.6">
         <line x1="50" y1="100" x2="70" y2="100" />
         <line x1="130" y1="100" x2="150" y2="100" />
@@ -63,7 +63,7 @@ export default function LogoSVG({ size = 200, className = '' }) {
         <circle cx="75" cy="100" r="3" />
       </g>
 
-      {/* Texto "MANTARO" en el círculo (opcional, texto SVG es complicado, mejor con estilos) */}
+      {/* Texto "MANTARO" en el cí­rculo (opcional, texto SVG es complicado, mejor con estilos) */}
       <text
         x="100"
         y="165"
@@ -79,3 +79,5 @@ export default function LogoSVG({ size = 200, className = '' }) {
     </svg>
   );
 }
+
+

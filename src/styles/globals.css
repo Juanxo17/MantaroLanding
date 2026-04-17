@@ -1,7 +1,7 @@
-/* Google Fonts */
+﻿/* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* CSS Variables — Premium Design System */
+/* CSS Variables â€” Premium Design System */
 :root {
   /* Color Palette */
   --color-dark-bg: #1a1008;
@@ -23,7 +23,7 @@
   --font-display: 'Cinzel', serif;
   --font-body: 'Inter', sans-serif;
 
-  /* Spacing — 4px scale */
+  /* Spacing â€” 4px scale */
   --sp-1: 0.25rem;   /* 4px */
   --sp-2: 0.5rem;    /* 8px */
   --sp-3: 0.75rem;   /* 12px */
@@ -289,3 +289,4 @@ a:hover {
     font-size: 0.85rem;
   }
 }
+

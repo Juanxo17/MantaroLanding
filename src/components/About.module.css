@@ -1,4 +1,4 @@
-.about {
+﻿.about {
   padding: var(--section-padding);
   padding-left: 24px;
   padding-right: 24px;
@@ -85,3 +85,4 @@
     line-height: 1.75;
   }
 }
+

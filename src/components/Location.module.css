@@ -1,4 +1,4 @@
-.location {
+﻿.location {
   padding: var(--section-padding);
   padding-left: 24px;
   padding-right: 24px;
@@ -123,3 +123,4 @@
     font-size: 0.825rem;
   }
 }
+

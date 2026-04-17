@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import BlurText from './BlurText';
 import styles from './About.module.css';
@@ -37,9 +37,9 @@ export default function About() {
         </motion.div>
 
         <motion.p className={styles.description} variants={itemVariants}>
-          Somos <strong>Mantaro Ginebra</strong>, un café-restaurante ubicado en el corazón de
+          Somos <strong>Mantaro Ginebra</strong>, un Café-restaurante ubicado en el corazón de
           Ginebra, Valle del Cauca. Nuestro espacio es mucho más que un lugar para comer y
-          beber — es un santuario donde la atmósfera envuelve cada momento y la
+          beber â€” es un santuario donde la atmósfera envuelve cada momento y la
           calidad impera en cada detalle.
         </motion.p>
 
@@ -65,3 +65,5 @@ export default function About() {
     </section>
   );
 }
+
+

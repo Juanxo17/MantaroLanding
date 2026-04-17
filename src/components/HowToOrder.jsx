@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { Coffee, MessageCircle, Smartphone } from 'lucide-react';
 import BlurText from './BlurText';
@@ -16,13 +16,13 @@ export default function HowToOrder() {
       icon: <MessageCircle size={28} />,
       number: '02',
       title: 'O pide por el Chat',
-      desc: "Toca el ícono de mensajes, escribe 'Hola' y sigue las instrucciones.",
+      desc: "Toca el í­cono de mensajes, escribe 'Hola' y sigue las instrucciones.",
     },
     {
       icon: <Smartphone size={28} />,
       number: '03',
       title: 'Listo en WhatsApp',
-      desc: 'Todo se envía limpio y ordenado a nuestro WhatsApp para prepararlo.',
+      desc: 'Todo se enví­a limpio y ordenado a nuestro WhatsApp para prepararlo.',
     },
   ];
 
@@ -80,3 +80,4 @@ export default function HowToOrder() {
     </section>
   );
 }
+

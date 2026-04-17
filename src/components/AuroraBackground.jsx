@@ -1,11 +1,11 @@
-import React from "react";
+﻿import React from "react";
 import { motion } from "framer-motion";
 import styles from "./AuroraBackground.module.css";
 
 export const AuroraBackground = ({ children }) => {
   return (
     <div className={styles.auroraWrapper}>
-      {/* Background Orbs — Slow & Ethereal */}
+      {/* Background Orbs â€” Slow & Ethereal */}
       <motion.div
         className={`${styles.orb} ${styles.orb1}`}
         animate={{
@@ -34,10 +34,10 @@ export const AuroraBackground = ({ children }) => {
         transition={{ duration: 48, repeat: Infinity, ease: "linear" }}
       />
 
-      {/* Tribal Pattern — Very Subtle */}
+      {/* Tribal Pattern â€” Very Subtle */}
       <div className={styles.tribalPattern}></div>
 
-      {/* Noise Texture — Barely Visible */}
+      {/* Noise Texture â€” Barely Visible */}
       <div className={styles.noiseFilter}></div>
 
       {/* Content */}
@@ -45,3 +45,5 @@ export const AuroraBackground = ({ children }) => {
     </div>
   );
 };
+
+

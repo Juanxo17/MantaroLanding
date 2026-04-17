@@ -1,4 +1,4 @@
-.section {
+﻿.section {
   padding: var(--section-padding);
   padding-left: 24px;
   padding-right: 24px;
@@ -162,3 +162,4 @@
     font-size: 3rem;
   }
 }
+

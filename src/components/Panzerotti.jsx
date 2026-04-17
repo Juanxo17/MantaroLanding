@@ -5,7 +5,7 @@ import styles from './Panzerotti.module.css';
 export default function Panzerotti() {
   const openWhatsApp = () => {
     window.open(
-      'https://wa.me/573166677871?text=Hola%20Mantaro,%20quiero%20saber%20mÃ¡s%20sobre%20el%20Panzerotti',
+      'https://wa.me/573166677871?text=Hola%20Mantaro,%20quiero%20saber%20más%20sobre%20el%20Panzerotti',
       '_blank'
     );
   };
@@ -38,7 +38,7 @@ export default function Panzerotti() {
       >
         {/* Shimmer badge */}
         <motion.div className={styles.badge} variants={itemVariants}>
-          <span className={styles.badgeText}>âœ¨ NUEVO</span>
+          <span className={styles.badgeText}>✨ NUEVO</span>
           <div className={styles.badgeShine} />
         </motion.div>
 
@@ -47,8 +47,8 @@ export default function Panzerotti() {
         </motion.h2>
 
         <motion.p className={styles.description} variants={itemVariants}>
-          Nuestro mÃ¡s reciente producto estrella. Una experiencia culinaria Ãºnica que combina
-          tradiciÃ³n italiana con los sabores que amamos. PrÃ³ximamente disponible.
+          Nuestro más reciente producto estrella. Una experiencia culinaria única que combina
+          tradición italiana con los sabores que amamos. Próximamente disponible.
         </motion.p>
 
         <motion.button
@@ -58,9 +58,12 @@ export default function Panzerotti() {
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.96 }}
         >
-          Quiero saber mÃ¡s
+          Quiero saber más
         </motion.button>
       </motion.div>
     </section>
   );
 }
+
+
+

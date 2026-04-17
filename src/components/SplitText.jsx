@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 
 const SplitText = ({
   text,
@@ -52,3 +52,4 @@ const SplitText = ({
 };
 
 export default SplitText;
+

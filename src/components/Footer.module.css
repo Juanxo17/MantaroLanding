@@ -1,4 +1,4 @@
-.footer {
+﻿.footer {
   position: relative;
   margin-top: 2rem;
 }
@@ -41,7 +41,7 @@
   opacity: 0.8;
 }
 
-/* CTA Row — Instagram & Google Review */
+/* CTA Row â€” Instagram & Google Review */
 .ctaRow {
   display: flex;
   gap: 0.75rem;
@@ -178,3 +178,4 @@
     height: 36px;
   }
 }
+

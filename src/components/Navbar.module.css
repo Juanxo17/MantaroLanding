@@ -1,4 +1,4 @@
-.navbar {
+﻿.navbar {
   position: fixed;
   top: 0;
   width: 100%;
@@ -192,7 +192,7 @@
   font-size: 1.5rem;
 }
 
-/* Mobile Menu — Full overlay */
+/* Mobile Menu â€” Full overlay */
 .mobileMenu {
   position: fixed;
   top: 0;
@@ -276,3 +276,4 @@
     font-size: 1.25rem;
   }
 }
+

@@ -59,7 +59,7 @@ export default function Hero() {
 
   const openWhatsApp = () => {
     window.open(
-      'https://wa.me/573166677871?text=Hola%20Mantaro%20ðŸ‘‹%20quiero%20ver%20el%20menÃº',
+      `https://wa.me/573166677871?text=${encodeURIComponent('Hola Mantaro 👋 quiero ver el menú')}`,
       '_blank'
     );
   };
@@ -116,7 +116,7 @@ export default function Hero() {
         {/* Slogan â€” animated letter by letter */}
         <motion.div variants={itemVariants}>
           <SplitText
-            text="Deleitar el paladar en una atmÃ³sfera mÃ¡gica"
+            text="Deleitar el paladar en una atmósfera mágica"
             className={styles.slogan}
             delay={40}
           />
@@ -124,9 +124,9 @@ export default function Hero() {
 
         {/* Schedule â€” subtle */}
         <motion.div className={styles.schedule} variants={itemVariants}>
-          <span>Lunâ€“Dom 9amâ€“10pm</span>
-          <span className={styles.scheduleDot}>Â·</span>
-          <span>Vieâ€“SÃ¡b 9amâ€“11pm</span>
+          <span>Lun–Dom 9am–10pm</span>
+          <span className={styles.scheduleDot}>·</span>
+          <span>Vie–Sáb 9am–11pm</span>
         </motion.div>
 
         {/* CTA */}
@@ -137,7 +137,7 @@ export default function Hero() {
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
           >
-            Ver menÃº
+            Ver menú
           </motion.button>
           <motion.button className={styles.whatsappLink} onClick={openWhatsApp} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
             <MessageCircle size={18} />
@@ -163,3 +163,6 @@ export default function Hero() {
     </section>
   );
 }
+
+
+
